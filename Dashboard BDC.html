@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BDC VENDITA e NOLEGGIO</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f7ff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-weight: bold; /* Tutta la pagina in grassetto */
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start; /* Allinea gli elementi in alto */
+        margin-top: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 44%; /* Aumento per compensare l'aggiunta del bordo */
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+    }
+
+    th, td {
+		font-size: 26px;
+        border: 1px solid #cfd8dc;
+        padding: 15px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #2196f3;
+        color: #ffffff;
+        font-size: 22px; /* Aumento del carattere */
+    }
+
+    td {
+        background-color: #ffffff;
+        color: #212121;
+    }
+
+    caption {
+        font-size: 26px; /* Aumento del carattere */
+        font-weight: bold; /* Grassetto */
+    }
+
+    button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #2196f3;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #1976d2;
+    }
+
+    /* Nuove regole CSS per il colore del testo */
+    .low-total {
+        color: red;
+    }
+
+    .high-total {
+        color: green;
+    }
+
+    /* Stili aggiuntivi per l'icona della stella */
+    .top-player-icon {
+        margin-top: 20px; /* Aggiunto margine superiore per allineare con le tabelle */
+        text-align: center;
+        font-size: 28px; /* Aumento del carattere */
+        display: flex;
+        align-items: center; /* Allinea gli elementi verticalmente */
+    }
+
+    .top-player-icon .star {
+        color: gold;
+        font-size: 36px;
+        margin-right: 10px; /* Aggiunto margine a destra per separare la stella dal testo */
+    }
+
+    /* Animazione lampeggiante */
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .blink {
+        animation: blink 1s linear infinite;
+    }
+</style>
+</head>
+<body>
+
+
+<div class="container">
+    <table id="venditaTable">
+        <caption>BDC VENDITA</caption>
+        <thead>
+            <tr>
+                <th>OPERATORE</th>
+                <th>FISICI</th>
+                <th>TELEFONICI</th>
+                <th>TOTALE</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr id="CAROL">
+                <td>CAROL</td>
+                <td id="CAROLFisici" onclick="increment('CAROLFisici')">0</td>
+                <td id="CAROLTelefonici" onclick="increment('CAROLTelefonici')">0</td>
+                <td id="CAROLTotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="CATERINA">
+                <td>CATERINA</td>
+                <td id="CATERINAFisici" onclick="increment('CATERINAFisici')">0</td>
+                <td id="CATERINATelefonici" onclick="increment('CATERINATelefonici')">0</td>
+                <td id="CATERINATotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="GIADA">
+                <td>GIADA</td>
+                <td id="GIADAFisici" onclick="increment('GIADAFisici')">0</td>
+                <td id="GIADATelefonici" onclick="increment('GIADATelefonici')">0</td>
+                <td id="GIADATotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="GIULIA">
+                <td>GIULIA</td>
+                <td id="GIULIAFisici" onclick="increment('GIULIAFisici')">0</td>
+                <td id="GIULIATelefonici" onclick="increment('GIULIATelefonici')">0</td>
+                <td id="GIULIATotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="PRINCIA">
+                <td>PRINCIA</td>
+                <td id="PRINCIAFisici" onclick="increment('PRINCIAFisici')">0</td>
+                <td id="PRINCIATelefonici" onclick="increment('PRINCIATelefonici')">0</td>
+                <td id="PRINCIATotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="VICTORIA">
+                <td>VICTORIA</td>
+                <td id="VICTORIAFisici" onclick="increment('VICTORIAFisici')">0</td>
+                <td id="VICTORIATelefonici" onclick="increment('VICTORIATelefonici')">0</td>
+                <td id="VICTORIATotale">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+        </tbody>
+     </table>
+    
+    <table id="noleggioTable">
+        <caption>NOLEGGIO</caption>
+        <thead>
+            <tr>
+                <th>OPERATORE</th>
+                <th>FISICI</th>
+                <th>TELEFONICI</th>
+                <th>TOTALE</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="CAROL_n">
+                <td>CAROL</td>
+                <td id="CAROLFisici_n" onclick="increment('CAROLFisici_n')">0</td>
+                <td id="CAROLTelefonici_n" onclick="increment('CAROLTelefonici_n')">0</td>
+                <td id="CAROLTotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="CATERINA_n">
+                <td>CATERINA</td>
+                <td id="CATERINAFisici_n" onclick="increment('CATERINAFisici_n')">0</td>
+                <td id="CATERINATelefonici_n" onclick="increment('CATERINATelefonici_n')">0</td>
+                <td id="CATERINATotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="GIADA_n">
+                <td>GIADA</td>
+                <td id="GIADAFisici_n" onclick="increment('GIADAFisici_n')">0</td>
+                <td id="GIADATelefonici_n" onclick="increment('GIADATelefonici_n')">0</td>
+                <td id="GIADATotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="GIULIA_n">
+                <td>GIULIA</td>
+                <td id="GIULIAFisici_n" onclick="increment('GIULIAFisici_n')">0</td>
+                <td id="GIULIATelefonici_n" onclick="increment('GIULIATelefonici_n')">0</td>
+                <td id="GIULIATotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="PRINCIA_n">
+                <td>PRINCIA</td>
+                <td id="PRINCIAFisici_n" onclick="increment('PRINCIAFisici_n')">0</td>
+                <td id="PRINCIATelefonici_n" onclick="increment('PRINCIATelefonici_n')">0</td>
+                <td id="PRINCIATotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+            <tr id="VICTORIA_n">
+                <td>VICTORIA</td>
+                <td id="VICTORIAFisici_n" onclick="increment('VICTORIAFisici_n')">0</td>
+                <td id="VICTORIATelefonici_n" onclick="increment('VICTORIATelefonici_n')">0</td>
+                <td id="VICTORIATotale_n">0</td>
+                <td><button onclick="resetRow(this)">Reset</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <div class="top-player-icon blink" id="topPlayerVendita">
+        <span class="star">&#9733;</span>
+        <p>IL TOP PLAYER DEL GIORNO E' <span id="topPlayerNameVendita"></span></p>
+    </div>
+
+    <div class="top-player-icon blink" id="topPlayerNoleggio">
+        <span class="star">&#9733;</span>
+        <p>IL TOP PLAYER DEL GIORNO E' <span id="topPlayerNameNoleggio"></span></p>
+    </div>
+</div>
+
+<button onclick="resetValues()">Resetta tutto</button>
+
+<script>
+    function increment(cellId) {
+        var cell = document.getElementById(cellId);
+        var value = parseInt(cell.innerText);
+        cell.innerText = value + 1;
+        updateTotal(cell.parentNode);
+        updateTopPlayer(); // Aggiornamento del top player dopo incremento
+    }
+
+    function updateTotal(row) {
+        var fisici = parseInt(row.querySelector('td:nth-child(2)').innerText);
+        var telefonici = parseInt(row.querySelector('td:nth-child(3)').innerText);
+        var totale = fisici + telefonici;
+        var totalCell = row.querySelector('td:nth-child(4)');
+        totalCell.innerText = totale;
+        // Aggiunta di classi per colorare il testo in base al totale
+        if (totale < 20) {
+            totalCell.classList.remove('high-total');
+            totalCell.classList.add('low-total');
+        } else {
+            totalCell.classList.remove('low-total');
+            totalCell.classList.add('high-total');
+        }
+    }
+
+    function resetRow(button) {
+        var row = button.parentNode.parentNode;
+        var cells = row.querySelectorAll('td');
+        for (var i = 1; i < cells.length - 1; i++) {
+            cells[i].innerText = '0';
+        }
+        updateTotal(row);
+        updateTopPlayer(); // Aggiornamento del top player dopo reset
+    }
+
+    function resetValues() {
+        var rows = document.querySelectorAll('tbody tr');
+        rows.forEach(function(row) {
+            var cells = row.querySelectorAll('td');
+            for (var i = 1; i < cells.length - 1; i++) {
+                cells[i].innerText = '0';
+            }
+            updateTotal(row);
+        });
+        updateTopPlayer(); // Aggiornamento del top player dopo reset generale
+    }
+
+    function updateTopPlayer() {
+        var rowsVendita = document.querySelectorAll('#venditaTable tbody tr');
+        var maxTotalVendita = 0;
+        var topPlayerNameVendita = '';
+        rowsVendita.forEach(function(row) {
+            var total = parseInt(row.querySelector('td:nth-child(4)').innerText);
+            if (total > maxTotalVendita) {
+                maxTotalVendita = total;
+                topPlayerNameVendita = row.querySelector('td:first-child').innerText;
+            }
+        });
+        document.getElementById('topPlayerNameVendita').innerText = topPlayerNameVendita;
+
+        var rowsNoleggio = document.querySelectorAll('#noleggioTable tbody tr');
+        var maxTotalNoleggio = 0;
+        var topPlayerNameNoleggio = '';
+        rowsNoleggio.forEach(function(row) {
+            var total = parseInt(row.querySelector('td:nth-child(4)').innerText);
+            if (total > maxTotalNoleggio) {
+                maxTotalNoleggio = total;
+                topPlayerNameNoleggio = row.querySelector('td:first-child').innerText;
+            }
+        });
+        document.getElementById('topPlayerNameNoleggio').innerText = topPlayerNameNoleggio;
+    }
+
+    // Chiama la funzione all'inizio per aggiornare i valori iniziali
+    updateTopPlayer();
+</script>
+
+</body>
+</html>
